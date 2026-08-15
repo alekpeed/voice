@@ -21,10 +21,9 @@ WorkspaceLayout AppShell::layout() const {
             "Voice isolation / playback / zoom / instrument controls"
         };
     }
-    if (activeRoute_ == Route::Learn || activeRoute_ == Route::Practice ||
-        activeRoute_ == Route::BarryHarris) {
+    if (activeRoute_ == Route::Learn || activeRoute_ == Route::Practice) {
         return {
-            "Navigation / lesson or exercise list",
+            "Fundamental course / current step / canonical book links",
             "Compact grand staff / voice graph / relevant keyboard",
             "Deterministic movement facts / guide-tone context / notation controls"
         };

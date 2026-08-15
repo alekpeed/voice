@@ -177,3 +177,30 @@ Known limitation:
 Phase 6 exit evidence: canonical movement, common-tone, crossing, guide-tone,
 pitch-spelling, ordering, ambiguity, and empty-input fixtures produce exact
 asserted facts under the strict build, sanitizer run, and feedback smoke command.
+
+## Phase 7: Fundamental curriculum
+
+Implemented:
+
+- A fixed three-step course from the two individual guide-tone transitions to
+  the complete Dm7-G7-Cmaj7 two-voice skeleton.
+- Canonical links to Volume I concepts and the printed `VL-EX-03C` and
+  `VL-EX-05A` Practice Companion exercises.
+- Sequential step unlocking; unsuccessful or incomplete responses do not advance.
+- Exact event-by-event pitch evaluation independent of played-note order.
+- Accepted performances flow through voice assignment, persistent voice paths,
+  deterministic contextual feedback, and compact notation generation.
+- Explicit facts for pitch mismatches, response length, timestamp order, and
+  completion state, plus a full-course CLI smoke path.
+
+Known limitations:
+
+- Phase 7 uses the canonical C-major guide-tone skeleton only. All-key
+  transposition and generated variants belong to Phase 8.
+- Course progress is session-local; persistent competency evidence belongs to
+  the later book-integration and persistence phases.
+
+Phase 7 exit evidence: all three steps complete sequentially from deterministic
+sonority fixtures; the final attempt contains two persistent paths, two exact
+feedback reports, and three chord-labeled notation events under strict tests,
+sanitizers, and the fundamental-course smoke command.

@@ -4,7 +4,7 @@ Desktop-first piano training software centered on voice paths rather than chord 
 
 ## Current milestone
 
-Phases 0-6 are implemented. The project provides subsystem contracts, app-shell state, logging, settings, deterministic tests, CI, Linux raw-MIDI input, resilient MIDI sessions, a polyphonic SFZ/WAV acoustic-piano engine, velocity calibration, low-latency Linux ALSA output, configurable sonority detection, weighted 2-4 voice assignment, a voice-path visualizer, compact grand-staff SVG notation, and exact deterministic feedback for common tones, stepwise movement, leaps, crossings, and explicitly supplied guide-tone context. The included study PDFs are indexed as the canonical curriculum: 64 voice-leading concepts, 80 companion exercises, 12 companion etudes, and all 33 Barry Harris guide chapters. Harmonic recognition, persistence, and interactive curriculum implementations begin in later phases.
+Phases 0-7 are implemented. The project provides subsystem contracts, app-shell state, logging, settings, deterministic tests, CI, Linux raw-MIDI input, resilient MIDI sessions, a polyphonic SFZ/WAV acoustic-piano engine, velocity calibration, low-latency Linux ALSA output, configurable sonority detection, weighted 2-4 voice assignment, a voice-path visualizer, compact grand-staff SVG notation, exact deterministic feedback, and the first complete course path: two guide-tone voices through ii-V-I with sequential practice, book links, evaluation, feedback, notation, and visualization. The included study PDFs are indexed as the canonical curriculum: 64 voice-leading concepts, 80 companion exercises, 12 companion etudes, and all 33 Barry Harris guide chapters. General exercise generation, harmonic recognition, and persistence begin in later phases.
 
 ## Build
 
@@ -34,6 +34,7 @@ List Linux raw-MIDI inputs or run the deterministic MIDI smoke test:
 ./build/voice-leading-lab --visualizer-smoke
 ./build/voice-leading-lab --notation-smoke
 ./build/voice-leading-lab --feedback-smoke
+./build/voice-leading-lab --course-smoke
 ```
 
 Export the deterministic ii-V-I voice-graph fixture as SVG:

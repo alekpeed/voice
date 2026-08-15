@@ -6,6 +6,7 @@
 #include "vll/audio/MidiAudioRouter.h"
 #include "vll/core/Logger.h"
 #include "vll/core/Settings.h"
+#include "vll/curriculum/FundamentalCourse.h"
 #include "vll/midi/LinuxRawMidiInput.h"
 #include "vll/midi/MidiSession.h"
 #include "vll/midi/VirtualMidiInput.h"
@@ -15,6 +16,7 @@
 #include "vll/visualization/VoicePathBuilder.h"
 
 #include <array>
+#include <algorithm>
 #include <cmath>
 #include <chrono>
 #include <iostream>
@@ -81,6 +83,13 @@ vll::analysis::FeedbackReport createFeedbackFixture() {
         vll::analysis::PitchNamePreference::Sharps,
     };
     return vll::analysis::DeterministicFeedbackGenerator{}.generate(assignment, context);
+}
+
+std::vector<vll::Sonority> courseTarget(
+    const vll::curriculum::FundamentalCourseStep& step) {
+    std::vector<vll::Sonority> response;
+    for (const auto& chord : step.chords) response.push_back(chord.target);
+    return response;
 }
 
 } // namespace
@@ -267,6 +276,25 @@ int main(const int argc, char** argv) {
         }
         if (!hasSummary || !hasCommonTone || !hasGuideTone) return 20;
         std::cout << "FEEDBACK_SMOKE_OK\n";
+    }
+
+    if (command == "--course-smoke") {
+        vll::curriculum::FundamentalCourseSession session;
+        vll::curriculum::CourseAttemptResult result;
+        while (!session.complete()) {
+            result = session.submit(courseTarget(*session.currentStep()));
+            if (!result.accepted) return 21;
+        }
+        const bool hasGuideToneResolution = std::ranges::any_of(
+            result.observations, [](const vll::Observation& observation) {
+                return observation.fact ==
+                    "Voice 1 moved from G7 guide tone F3 to Cmaj7 guide tone E3.";
+            });
+        if (!result.courseComplete || result.voicePaths.size() != 2 ||
+            result.notation.events.size() != 3 || !hasGuideToneResolution) {
+            return 22;
+        }
+        std::cout << "COURSE_SMOKE_OK\n";
     }
 
     if (smokeTest) std::cout << "SMOKE_TEST_OK\n";
