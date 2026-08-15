@@ -56,3 +56,15 @@ Known limitations:
 - Physical audio hardware and a full piano sample pack were unavailable in CI; rendering is validated deterministically in memory.
 
 Phase 2 exit evidence: strict builds, audio unit and dense-render stress tests, sanitizer tests, `voice-leading-lab --audio-smoke`, and ALSA null-device output pass.
+
+## Cross-phase curriculum alignment
+
+The three study PDFs uploaded to the repository are now authoritative inputs to
+all later phases. A typed catalog indexes the 64 published voice-leading concept
+IDs, 16 matching practice units, 80 printed exercises, 12 etudes, 33 Barry
+Harris chapters, and 5 appendices. It also preserves edition hashes and current
+page routing while keeping stable IDs independent of pagination.
+
+This work establishes content identity and coverage only. Exercise execution,
+book navigation, notation, scoring, persistence, and adaptive scheduling remain
+in their designated implementation phases.

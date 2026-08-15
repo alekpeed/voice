@@ -20,6 +20,7 @@ add_library(vll_core
     src/audio/VelocityCurve.cpp
     src/core/Logger.cpp
     src/core/Settings.cpp
+    src/curriculum/CurriculumCatalog.cpp
     src/midi/LinuxRawMidiInput.cpp
     src/midi/MidiByteStreamParser.cpp
     src/midi/MidiSession.cpp
@@ -41,6 +42,7 @@ if(VLL_BUILD_TESTS)
         tests/TestMain.cpp
         tests/AppShellTests.cpp
         tests/AudioSampleTests.cpp
+        tests/CurriculumCatalogTests.cpp
         tests/SamplePianoTests.cpp
         tests/VelocityCurveTests.cpp
         tests/MidiParserTests.cpp
@@ -54,3 +56,5 @@ if(VLL_BUILD_TESTS)
 endif()
 
 install(TARGETS voice-leading-lab RUNTIME DESTINATION bin)
+install(FILES Voice_Leading_and_Barry_Harris_PDFs.zip
+        DESTINATION share/voice-leading-lab/books)
