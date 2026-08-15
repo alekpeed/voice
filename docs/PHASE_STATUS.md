@@ -282,3 +282,13 @@ answers, and isolated-voice playback.
 Exit evidence: canonical collections, inversions, borrowing, related dominants,
 seed reproduction, exact answers, and balanced isolated playback pass strict
 tests and the combined Phase 13-15 smoke command.
+
+## Phases 16-18: Free analysis, progression practice, and optional tutor
+
+Implemented: recorded-sonority voice-path analysis and motion-habit counts,
+user progression/chorus constraint evaluation, and an offline-complete tutor
+boundary that exports only validated deterministic facts as escaped JSON.
+
+Exit evidence: session failures, habit counts, chorus dimensions, harmony
+membership, offline explanation, and structured payload safety pass strict
+tests, sanitizers, and the combined Phase 16-18 smoke command.

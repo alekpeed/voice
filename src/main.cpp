@@ -14,6 +14,9 @@
 #include "vll/ear/EarTrainingEngine.h"
 #include "vll/harmony/MelodyHarmonizer.h"
 #include "vll/lab/ReharmonizationLab.h"
+#include "vll/freeplay/SessionAnalyzer.h"
+#include "vll/practice/ProgressionPractice.h"
+#include "vll/tutor/StructuredTutor.h"
 #include "vll/midi/LinuxRawMidiInput.h"
 #include "vll/midi/MidiSession.h"
 #include "vll/midi/VirtualMidiInput.h"
@@ -380,6 +383,15 @@ int main(const int argc, char** argv) {
         if (!ear.submit(prompt, prompt.correctAnswer).correct ||
             ear.isolatedPlayback(prompt).size() != 4) return 32;
         std::cout << "PHASE_13_15_SMOKE_OK\n";
+    }
+    if (command == "--phase-16-18-smoke") {
+        const std::vector<vll::Sonority> session{{{{48},{52}},0,1},{{{48},{52}},2,3}};
+        if (!vll::freeplay::SessionAnalyzer{}.analyze(session,2).complete) return 33;
+        const vll::practice::PracticePlan plan{"VL-17-A",{{"C",{0,4,7}}},2,2,false};
+        if (!vll::practice::ProgressionPractice{}.evaluate(plan,session).accepted) return 34;
+        const vll::tutor::TutorPayload payload{"VL-02.2","VL-17-A",{{"step","E moved to F."}}};
+        if (vll::tutor::StructuredTutor{}.jsonPayload(payload)=="{}") return 35;
+        std::cout << "PHASE_16_18_SMOKE_OK\n";
     }
 
     if (smokeTest) std::cout << "SMOKE_TEST_OK\n";
