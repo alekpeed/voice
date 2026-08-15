@@ -52,3 +52,12 @@ spelling, accidental memory, ledger lines, collision offsets, system wrapping,
 scaling, and cursor position before the SVG adapter draws any glyphs. This keeps
 engraving behavior testable and permits a later desktop renderer to reuse the
 same geometry and document contract.
+
+## ADR-010: Feedback is structured fact, not generated judgment
+
+Feedback is derived from assigned voice transitions and explicit chord context.
+The engine reports exact pitches, direction, interval size, common tones,
+crossing pairs, and guide-tone arrivals or departures in stable voice order. It
+does not infer harmonic function, stylistic quality, or student intent. Later
+curriculum and explanation layers may select or explain these observations but
+cannot alter the underlying facts.

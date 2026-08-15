@@ -1,4 +1,5 @@
 #include "vll/application/AppShell.h"
+#include "vll/analysis/DeterministicFeedback.h"
 #include "vll/analysis/VoiceAssigner.h"
 #include "vll/audio/SamplePiano.h"
 #include "vll/audio/LinuxAlsaOutput.h"
@@ -64,6 +65,22 @@ std::string createNotationFixtureSvg() {
     options.showFingering = false;
     options.highlightedVoice = 3;
     return vll::notation::SvgNotationRenderer{}.render(document, options).scalableVectorData;
+}
+
+vll::analysis::FeedbackReport createFeedbackFixture() {
+    const vll::analysis::VoiceAssignment assignment{
+        {{1, {50}, {43}, -7, vll::MovementSize::Leap},
+         {2, {53}, {53}, 0, vll::MovementSize::Stationary},
+         {3, {60}, {59}, -1, vll::MovementSize::Semitone}},
+        0.9,
+        false,
+    };
+    const vll::analysis::FeedbackContext context{
+        vll::analysis::ChordFeedbackContext{"Dm7", {5, 0}},
+        vll::analysis::ChordFeedbackContext{"G7", {11, 5}},
+        vll::analysis::PitchNamePreference::Sharps,
+    };
+    return vll::analysis::DeterministicFeedbackGenerator{}.generate(assignment, context);
 }
 
 } // namespace
@@ -233,6 +250,23 @@ int main(const int argc, char** argv) {
         } else {
             std::cout << "NOTATION_SMOKE_OK\n";
         }
+    }
+
+    if (command == "--feedback-smoke") {
+        const auto report = createFeedbackFixture();
+        bool hasSummary = false;
+        bool hasCommonTone = false;
+        bool hasGuideTone = false;
+        for (const auto& observation : report.observations) {
+            std::cout << observation.code << " | " << observation.fact << '\n';
+            hasSummary = hasSummary ||
+                (observation.code == "transition_summary" &&
+                 observation.fact.find("1 common tone, 1 stepwise move, 1 leap") != std::string::npos);
+            hasCommonTone = hasCommonTone || observation.code == "common_tone";
+            hasGuideTone = hasGuideTone || observation.code == "guide_tone_connection";
+        }
+        if (!hasSummary || !hasCommonTone || !hasGuideTone) return 20;
+        std::cout << "FEEDBACK_SMOKE_OK\n";
     }
 
     if (smokeTest) std::cout << "SMOKE_TEST_OK\n";
