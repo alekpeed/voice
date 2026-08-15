@@ -4,7 +4,7 @@ Desktop-first piano training software centered on voice paths rather than chord 
 
 ## Current milestone
 
-Phases 0-2 are implemented. The project provides subsystem contracts, app-shell state, logging, settings, deterministic tests, CI, Linux raw-MIDI input, resilient MIDI sessions, a polyphonic SFZ/WAV acoustic-piano engine, velocity calibration, and low-latency Linux ALSA output. The included study PDFs are indexed as the canonical curriculum: 64 voice-leading concepts, 80 companion exercises, 12 companion etudes, and all 33 Barry Harris guide chapters. Music analysis, notation, persistence, and interactive curriculum implementations begin in later phases.
+Phases 0-3 are implemented. The project provides subsystem contracts, app-shell state, logging, settings, deterministic tests, CI, Linux raw-MIDI input, resilient MIDI sessions, a polyphonic SFZ/WAV acoustic-piano engine, velocity calibration, low-latency Linux ALSA output, configurable sonority detection, and weighted 2-4 voice assignment with ambiguity and transition metrics. The included study PDFs are indexed as the canonical curriculum: 64 voice-leading concepts, 80 companion exercises, 12 companion etudes, and all 33 Barry Harris guide chapters. Visualization, notation, harmonic analysis, persistence, and interactive curriculum implementations begin in later phases.
 
 ## Build
 

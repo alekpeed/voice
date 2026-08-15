@@ -19,3 +19,18 @@ The future audio callback will not perform database, network, allocation-heavy, 
 ## ADR-005: External technology is adapted at the boundary
 
 JUCE, SQLite, notation rendering, sampling/modeling, and plugin hosting will enter through adapters. Domain headers contain no framework types.
+
+## ADR-006: Sonorities are time-windowed performance states
+
+A configurable attack window groups rolled or slightly asynchronous notes. The
+performance state tracks physical keys separately from pedal-sustained sound,
+and legato releases inside the active window affect the destination sonority.
+Time advancement is explicit so tests and offline analysis remain deterministic.
+
+## ADR-007: Small voice assignments use exhaustive weighted matching
+
+For two through four voices, all mappings are cheap enough to evaluate. The
+deterministic cost model combines pitch distance, common-tone continuity,
+crossing, excess leaps, and hard outer-voice locks. The best and second-best
+costs produce explicit ambiguity and confidence instead of hiding uncertain
+assignments.

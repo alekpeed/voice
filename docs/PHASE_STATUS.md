@@ -68,3 +68,31 @@ page routing while keeping stable IDs independent of pagination.
 This work establishes content identity and coverage only. Exercise execution,
 book navigation, notation, scoring, persistence, and adaptive scheduling remain
 in their designated implementation phases.
+
+## Phase 3: Sonority and voice assignment
+
+Implemented:
+
+- Configurable chord windows for rolled chords and small attack offsets.
+- Separate held-key, pedal-sustained, and sounding-note state by MIDI channel.
+- Deterministic sonority completion for sustain, legato transitions, and repeated notes.
+- Bounded sonority history for live sessions.
+- Exhaustive weighted assignment for two through four voices.
+- Pitch-distance, common-tone, crossing, excess-leap, bass-lock, and soprano-lock costs.
+- Confidence and ambiguity derived from the best and second-best mappings.
+- Total and maximum displacement, stationary/semitone/whole-step/leap counts,
+  crossing, overlap, spacing, bass contour, and soprano contour metrics.
+- Exact constraint findings for mismatched voice count, excessive leaps, and failed locks.
+
+Known limitations:
+
+- Voice assignment currently requires equal source and destination voice counts
+  from two through four; voice entry and exit are deferred.
+- The application timer/UI has not yet been wired to advance the detector; the
+  deterministic core exposes explicit time advancement for the later adapter.
+- Harmonic labels, guide-tone interpretation, nearest-voicing search, and
+  persistent visualization are later phases.
+
+Phase 3 exit evidence: canonical two-, three-, and four-voice assignments,
+rolled-chord, sustain, legato, repeated-note, ambiguity, crossing, overlap, and
+constraint fixtures pass under the strict build.
