@@ -96,3 +96,30 @@ Known limitations:
 Phase 3 exit evidence: canonical two-, three-, and four-voice assignments,
 rolled-chord, sustain, legato, repeated-note, ambiguity, crossing, overlap, and
 constraint fixtures pass under the strict build.
+
+## Phase 4: Visualizer
+
+Implemented:
+
+- Persistent voice IDs and labeled paths across multi-sonority progressions.
+- Cursor-derived highlighted pitches and a non-decorative relevant keyboard.
+- Event timeline markers, viewport zoom, playback cursor, and bounded rates from 0.1x to 1.0x.
+- Voice isolation in graph emphasis, keyboard state, and playback events.
+- Slow-playback note plans routed through the existing instrument-compatible event types.
+- A dark, labeled SVG voice graph with pitch/time axes, event overlays, movement
+  labels, stationary/semitone/step/leap descriptions, and per-voice text labels.
+- A deterministic four-voice ii-V-I fixture and CLI SVG export.
+- Dedicated Visualizer workspace regions in the app shell.
+
+Known limitations:
+
+- The current renderer is the framework-independent SVG adapter; interactive
+  desktop widgets and pointer controls await the production UI framework.
+- Playback plans are generated but are not yet scheduled into the live sample
+  instrument by a visualizer UI controller.
+- Chord symbols are fixture labels only; harmonic recognition is not implemented.
+
+Phase 4 exit evidence: the ii-V-I fixture produces four persistent, individually
+labeled paths; semitone and stationary guide-tone motion is explicit; isolation,
+keyboard state, timeline, zoom, playback rate, SVG export, and the visualizer
+smoke command pass under the strict build.

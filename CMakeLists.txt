@@ -28,6 +28,9 @@ add_library(vll_core
     src/midi/MidiSession.cpp
     src/midi/VirtualMidiInput.cpp
     src/performance/SonorityDetector.cpp
+    src/visualization/VisualizationModel.cpp
+    src/visualization/VoiceGraphSvgRenderer.cpp
+    src/visualization/VoicePathBuilder.cpp
 )
 target_include_directories(vll_core PUBLIC include)
 target_link_libraries(vll_core PUBLIC Threads::Threads ${CMAKE_DL_LIBS})
@@ -50,6 +53,7 @@ if(VLL_BUILD_TESTS)
         tests/SonorityDetectorTests.cpp
         tests/VelocityCurveTests.cpp
         tests/VoiceAssignmentTests.cpp
+        tests/VisualizationTests.cpp
         tests/MidiParserTests.cpp
         tests/MidiSessionTests.cpp
         tests/SettingsTests.cpp

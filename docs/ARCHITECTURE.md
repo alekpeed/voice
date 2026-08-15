@@ -34,3 +34,12 @@ deterministic cost model combines pitch distance, common-tone continuity,
 crossing, excess leaps, and hard outer-voice locks. The best and second-best
 costs produce explicit ambiguity and confidence instead of hiding uncertain
 assignments.
+
+## ADR-008: Visualization consumes persistent paths, not chord labels
+
+The visualizer converts transition-local assignments into stable voice IDs over
+an event sequence. Its frame contains paths, cursor, viewport, event markers,
+relevant keyboard state, isolation, and playback rate. A deterministic SVG
+adapter proves the rendering contract without coupling the core to a desktop UI
+framework. Slow and isolated playback are emitted as timestamped note events for
+the existing instrument boundary.
