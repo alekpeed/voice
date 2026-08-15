@@ -38,6 +38,9 @@ struct TransitionMetrics {
     int leaps{0};
     bool hasCrossing{false};
     bool hasOverlap{false};
+    int maximumAdjacentSpacing{0};
+    int bassMovement{0};
+    int sopranoMovement{0};
 };
 
 class IVoiceLeadingEvaluator {

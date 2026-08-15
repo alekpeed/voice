@@ -11,16 +11,32 @@ option(VLL_BUILD_TESTS "Build Voice Leading Lab tests" ON)
 option(VLL_WARNINGS_AS_ERRORS "Treat compiler warnings as errors" OFF)
 
 add_library(vll_core
+    src/analysis/DeterministicFeedback.cpp
+    src/analysis/VoiceAssigner.cpp
+    src/analysis/VoiceLeadingEvaluator.cpp
     src/application/AppShell.cpp
+    src/audio/AudioSample.cpp
+    src/audio/LinuxAlsaOutput.cpp
+    src/audio/MidiAudioRouter.cpp
+    src/audio/SamplePiano.cpp
+    src/audio/SfzPianoLoader.cpp
+    src/audio/VelocityCurve.cpp
     src/core/Logger.cpp
     src/core/Settings.cpp
+    src/curriculum/CurriculumCatalog.cpp
     src/midi/LinuxRawMidiInput.cpp
     src/midi/MidiByteStreamParser.cpp
     src/midi/MidiSession.cpp
     src/midi/VirtualMidiInput.cpp
+    src/notation/NotationLayout.cpp
+    src/notation/SvgNotationRenderer.cpp
+    src/performance/SonorityDetector.cpp
+    src/visualization/VisualizationModel.cpp
+    src/visualization/VoiceGraphSvgRenderer.cpp
+    src/visualization/VoicePathBuilder.cpp
 )
 target_include_directories(vll_core PUBLIC include)
-target_link_libraries(vll_core PUBLIC Threads::Threads)
+target_link_libraries(vll_core PUBLIC Threads::Threads ${CMAKE_DL_LIBS})
 target_compile_options(vll_core PRIVATE -Wall -Wextra -Wpedantic)
 if(VLL_WARNINGS_AS_ERRORS)
     target_compile_options(vll_core PRIVATE -Werror)
@@ -34,8 +50,17 @@ if(VLL_BUILD_TESTS)
     add_executable(vll_tests
         tests/TestMain.cpp
         tests/AppShellTests.cpp
+        tests/AudioSampleTests.cpp
+        tests/CurriculumCatalogTests.cpp
+        tests/FeedbackTests.cpp
+        tests/SamplePianoTests.cpp
+        tests/SonorityDetectorTests.cpp
+        tests/VelocityCurveTests.cpp
+        tests/VoiceAssignmentTests.cpp
+        tests/VisualizationTests.cpp
         tests/MidiParserTests.cpp
         tests/MidiSessionTests.cpp
+        tests/NotationTests.cpp
         tests/SettingsTests.cpp
         tests/TypesTests.cpp
     )
@@ -45,3 +70,5 @@ if(VLL_BUILD_TESTS)
 endif()
 
 install(TARGETS voice-leading-lab RUNTIME DESTINATION bin)
+install(FILES Voice_Leading_and_Barry_Harris_PDFs.zip
+        DESTINATION share/voice-leading-lab/books)
