@@ -7,6 +7,7 @@
 #include "vll/core/Logger.h"
 #include "vll/core/Settings.h"
 #include "vll/curriculum/FundamentalCourse.h"
+#include "vll/exercise/DeterministicExerciseGenerator.h"
 #include "vll/midi/LinuxRawMidiInput.h"
 #include "vll/midi/MidiSession.h"
 #include "vll/midi/VirtualMidiInput.h"
@@ -295,6 +296,38 @@ int main(const int argc, char** argv) {
             return 22;
         }
         std::cout << "COURSE_SMOKE_OK\n";
+    }
+
+    if (command == "--generator-smoke") {
+        const vll::exercise::DeterministicExerciseGenerator generator;
+        for (int key = 0; key < 12; ++key) {
+            const auto prompt = generator.generate({
+                "VL-05.2-GT", 808, key, 2,
+                vll::exercise::ExerciseType::GuideTonesOnly});
+            if (!prompt.valid || !generator.submit(prompt, prompt.target).satisfiesConstraints) {
+                return 23;
+            }
+        }
+        for (int voices = 2; voices <= 4; ++voices) {
+            const auto prompt = generator.generate({
+                "VL-05.2-NV", 808, 0, voices,
+                vll::exercise::ExerciseType::NearestVoicing});
+            if (!prompt.valid || prompt.constraints.voiceCount != voices ||
+                !generator.submit(prompt, prompt.target).satisfiesConstraints) {
+                return 24;
+            }
+        }
+        const auto soprano = generator.generate({
+            "VL-05.2-FS", 808, 5, 4,
+            vll::exercise::ExerciseType::FixedSoprano});
+        const auto bass = generator.generate({
+            "VL-05.2-FB", 808, 5, 3,
+            vll::exercise::ExerciseType::FixedBass});
+        if (!soprano.valid || !soprano.constraints.lockedSoprano ||
+            !bass.valid || !bass.constraints.lockedBass) {
+            return 25;
+        }
+        std::cout << "GENERATOR_SMOKE_OK\n";
     }
 
     if (smokeTest) std::cout << "SMOKE_TEST_OK\n";

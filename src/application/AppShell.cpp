@@ -25,7 +25,7 @@ WorkspaceLayout AppShell::layout() const {
         return {
             "Fundamental course / current step / canonical book links",
             "Compact grand staff / voice graph / relevant keyboard",
-            "Deterministic movement facts / guide-tone context / notation controls"
+            "Exercise type / key / voices / outer-voice locks / deterministic feedback"
         };
     }
     return {

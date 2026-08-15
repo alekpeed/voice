@@ -204,3 +204,32 @@ Phase 7 exit evidence: all three steps complete sequentially from deterministic
 sonority fixtures; the final attempt contains two persistent paths, two exact
 feedback reports, and three chord-labeled notation events under strict tests,
 sanitizers, and the fundamental-course smoke command.
+
+## Phase 8: Exercise generator
+
+Implemented:
+
+- Stable seed-based generation independent of standard-library random distributions.
+- Explicit-key and seeded all-key ii-to-V exercise generation.
+- Two-, three-, and four-voice source and destination voicings.
+- Nearest-voicing, guide-tones-only, fixed-soprano, and fixed-bass modes.
+- Exhaustive bounded-register search with required chord tones, hard outer-voice
+  locks, maximum movement, crossing prevention, spacing limits, and deterministic
+  tie-breaking.
+- Rich prompts containing source/target harmony, register, chord-tone space,
+  required tones, constraints, and the exact optimal displacement benchmark.
+- Submission evaluation that accepts alternate equally optimal voicings while
+  reporting exact voice-count, register, chord-tone, lock, spacing, leap, and
+  nearest-motion failures.
+
+Known limitations:
+
+- Phase 8 generates the canonical ii7-to-V7 task family. Additional progression
+  families will be added by their curriculum phases.
+- Enharmonic display currently uses sharp names; pitch-class generation itself
+  is transpositionally complete.
+
+Phase 8 exit evidence: all twelve keys, 2/3/4 voices, all four exercise modes,
+seed reproduction, seed variation, transposition, hard locks, alternate-response
+evaluation, and invalid-input fixtures pass strict tests, sanitizers, and the
+exercise-generator smoke command.
