@@ -2,6 +2,7 @@
 #include "vll/analysis/DeterministicFeedback.h"
 #include "vll/analysis/VoiceAssigner.h"
 #include "vll/audio/SamplePiano.h"
+#include "vll/audio/InstrumentWorkshop.h"
 #include "vll/audio/LinuxAlsaOutput.h"
 #include "vll/audio/MidiAudioRouter.h"
 #include "vll/core/Logger.h"
@@ -9,6 +10,8 @@
 #include "vll/curriculum/BookCurriculumEngine.h"
 #include "vll/curriculum/FundamentalCourse.h"
 #include "vll/exercise/DeterministicExerciseGenerator.h"
+#include "vll/harmony/MelodyHarmonizer.h"
+#include "vll/lab/ReharmonizationLab.h"
 #include "vll/midi/LinuxRawMidiInput.h"
 #include "vll/midi/MidiSession.h"
 #include "vll/midi/VirtualMidiInput.h"
@@ -347,6 +350,22 @@ int main(const int argc, char** argv) {
             return 27;
         }
         std::cout << "BOOK_SMOKE_OK\n";
+    }
+
+    if (command == "--phase-10-12-smoke") {
+        const auto rhodes = vll::audio::InstrumentWorkshop::factoryPreset("rhodes-suitcase");
+        if (!rhodes || !vll::audio::InstrumentWorkshop::validate(*rhodes)) return 28;
+        const vll::harmony::HarmonizationRequest harmony{
+            {{{60}, "Dm7", {2, 5, 9, 0}}, {{59}, "G7", {7, 11, 2, 5}},
+             {{59}, "Cmaj7", {0, 4, 7, 11}}}, 4, 36, 84,
+            vll::Sonority{{{50}, {53}, {57}, {60}}, 0, 0}, 2};
+        if (!vll::harmony::MelodyHarmonizer{}.harmonize(harmony).complete) return 29;
+        const vll::lab::LabRequest lab{
+            "VL-13.4-LAB-A", {{"Dm7", {2, 5, 9, 0}}, {"G7", {7, 11, 2, 5}}},
+            {{{50}, {53}, {57}, {60}}, 0, 0}, 4,
+            {vll::Pitch{60}, vll::Pitch{59}}, {vll::Pitch{50}, vll::Pitch{43}}, {}};
+        if (!vll::lab::ReharmonizationLab{}.realize(lab).complete) return 30;
+        std::cout << "PHASE_10_12_SMOKE_OK\n";
     }
 
     if (smokeTest) std::cout << "SMOKE_TEST_OK\n";

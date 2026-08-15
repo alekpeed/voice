@@ -35,6 +35,11 @@ WorkspaceLayout AppShell::layout() const {
             "Attempts / unassisted success / transposed evidence / book routes"
         };
     }
+    if (activeRoute_ == Route::Lab) {
+        return {"Saved labs / harmony sequence / alternative realizations",
+                "Fixed melody / bass / inner lines / comparative voice paths",
+                "Voice locks / candidate ranking / save and recall"};
+    }
     return {
         activeRoute_ == Route::Home ? "Navigation" : "Navigation / lesson or exercise list",
         activeRoute_ == Route::Home ? "Connect MIDI keyboard to begin" :

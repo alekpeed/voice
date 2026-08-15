@@ -257,3 +257,17 @@ Phase 9 exit evidence: all 64 canonical IDs resolve, book routes preserve exact
 source pages and printed exercise identities, prerequisites gate at Reliable,
 and every competency threshold passes strict tests, sanitizers, and the book
 integration smoke command.
+
+## Phases 10-12: Instruments, melody harmonization, and lab
+
+Implemented: seven validated acoustic/electric factory definitions, ordered FX,
+parametric EQ response, global/per-note tuning, fixed-soprano candidate
+harmonization ranked by voice motion, independent bass/soprano/inner-line locks,
+continuous voice paths, and named lab save/recall.
+
+The instrument layer defines and validates sound behavior but does not bundle
+copyrighted samples. Realism depends on separately licensed sample/model assets.
+
+Exit evidence: workshop ranges and DSP math, candidate ordering, melody locks,
+independent-line constraints, impossible cases, and saved labs pass strict tests,
+sanitizers, and the combined Phase 10-12 smoke command.

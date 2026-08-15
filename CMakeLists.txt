@@ -16,6 +16,7 @@ add_library(vll_core
     src/analysis/VoiceLeadingEvaluator.cpp
     src/application/AppShell.cpp
     src/audio/AudioSample.cpp
+    src/audio/InstrumentWorkshop.cpp
     src/audio/LinuxAlsaOutput.cpp
     src/audio/MidiAudioRouter.cpp
     src/audio/SamplePiano.cpp
@@ -28,6 +29,8 @@ add_library(vll_core
     src/curriculum/FundamentalCourse.cpp
     src/exercise/DeterministicExerciseGenerator.cpp
     src/exercise/NearestVoicingSolver.cpp
+    src/harmony/MelodyHarmonizer.cpp
+    src/lab/ReharmonizationLab.cpp
     src/midi/LinuxRawMidiInput.cpp
     src/midi/MidiByteStreamParser.cpp
     src/midi/MidiSession.cpp
@@ -60,6 +63,9 @@ if(VLL_BUILD_TESTS)
         tests/FeedbackTests.cpp
         tests/ExerciseGeneratorTests.cpp
         tests/FundamentalCourseTests.cpp
+        tests/InstrumentWorkshopTests.cpp
+        tests/MelodyHarmonizerTests.cpp
+        tests/ReharmonizationLabTests.cpp
         tests/SamplePianoTests.cpp
         tests/SonorityDetectorTests.cpp
         tests/VelocityCurveTests.cpp

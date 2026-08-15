@@ -4,7 +4,7 @@ Desktop-first piano training software centered on voice paths rather than chord 
 
 ## Current milestone
 
-Phases 0-9 are implemented. The project provides subsystem contracts, app-shell state, logging, settings, deterministic tests, CI, Linux raw-MIDI input, resilient MIDI sessions, a polyphonic SFZ/WAV acoustic-piano engine, velocity calibration, low-latency Linux ALSA output, configurable sonority detection, weighted 2-4 voice assignment, a voice-path visualizer, compact grand-staff SVG notation, exact deterministic feedback, the first complete two-voice ii-V-I course path, and seeded all-key exercise generation with nearest voicings, guide-tone mode, 2/3/4 voices, and fixed soprano or bass. The included study PDFs are the canonical curriculum: 64 stable voice-leading concept IDs route to their exact Study Guide pages, Practice Companion pages, units, and printed exercises. A deterministic prerequisite graph and five-level competency tracker record attempts, assistance, and transposed success. Harmonic recognition and durable persistence begin in later phases.
+Phases 0-12 are implemented. The project includes deterministic MIDI, audio, analysis, notation, feedback, curriculum, all-key exercises, canonical book integration, instrument-workshop presets, fixed-melody harmonization, and a reharmonization lab with independent voice locks. The study PDFs remain the canonical curriculum source.
 
 ## Build
 
@@ -37,6 +37,7 @@ List Linux raw-MIDI inputs or run the deterministic MIDI smoke test:
 ./build/voice-leading-lab --course-smoke
 ./build/voice-leading-lab --generator-smoke
 ./build/voice-leading-lab --book-smoke
+./build/voice-leading-lab --phase-10-12-smoke
 ```
 
 Export the deterministic ii-V-I voice-graph fixture as SVG:
