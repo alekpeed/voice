@@ -39,6 +39,7 @@ List Linux raw-MIDI inputs or run the deterministic MIDI smoke test:
 ./build/voice-leading-lab --book-smoke
 ./build/voice-leading-lab --phase-10-12-smoke
 ./build/voice-leading-lab --phase-13-15-smoke
+./build/voice-leading-lab --phase-16-18-smoke
 ```
 
 Export the deterministic ii-V-I voice-graph fixture as SVG:

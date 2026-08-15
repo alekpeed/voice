@@ -37,3 +37,5 @@ jobs:
         run: ./build/voice-leading-lab --phase-10-12-smoke
       - name: Barry Harris and ear training smoke test
         run: ./build/voice-leading-lab --phase-13-15-smoke
+      - name: Analysis practice and tutor smoke test
+        run: ./build/voice-leading-lab --phase-16-18-smoke

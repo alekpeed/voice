@@ -30,9 +30,12 @@ add_library(vll_core
     src/curriculum/FundamentalCourse.cpp
     src/exercise/DeterministicExerciseGenerator.cpp
     src/exercise/NearestVoicingSolver.cpp
+    src/freeplay/SessionAnalyzer.cpp
     src/ear/EarTrainingEngine.cpp
     src/harmony/MelodyHarmonizer.cpp
     src/lab/ReharmonizationLab.cpp
+    src/practice/ProgressionPractice.cpp
+    src/tutor/StructuredTutor.cpp
     src/midi/LinuxRawMidiInput.cpp
     src/midi/MidiByteStreamParser.cpp
     src/midi/MidiSession.cpp
@@ -59,6 +62,7 @@ if(VLL_BUILD_TESTS)
     add_executable(vll_tests
         tests/TestMain.cpp
         tests/AppShellTests.cpp
+        tests/AdvancedPhaseTests.cpp
         tests/BarryHarrisTests.cpp
         tests/AudioSampleTests.cpp
         tests/BookCurriculumEngineTests.cpp
