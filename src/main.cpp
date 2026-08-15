@@ -1,4 +1,5 @@
 #include "vll/application/AppShell.h"
+#include "vll/analysis/VoiceAssigner.h"
 #include "vll/audio/SamplePiano.h"
 #include "vll/audio/LinuxAlsaOutput.h"
 #include "vll/audio/MidiAudioRouter.h"
@@ -7,16 +8,45 @@
 #include "vll/midi/LinuxRawMidiInput.h"
 #include "vll/midi/MidiSession.h"
 #include "vll/midi/VirtualMidiInput.h"
+#include "vll/visualization/VisualizationModel.h"
+#include "vll/visualization/VoiceGraphSvgRenderer.h"
+#include "vll/visualization/VoicePathBuilder.h"
 
 #include <array>
 #include <cmath>
 #include <chrono>
 #include <iostream>
+#include <fstream>
 #include <memory>
 #include <filesystem>
 #include <string_view>
 #include <thread>
 #include <vector>
+
+namespace {
+
+std::string createVisualizerFixtureSvg() {
+    const std::vector<vll::Sonority> progression{
+        {{{50}, {53}, {60}, {64}}, 0, 80'000},
+        {{{43}, {53}, {59}, {62}}, 1'000'000, 1'080'000},
+        {{{48}, {52}, {59}, {62}}, 2'000'000, 2'080'000},
+    };
+    vll::ExerciseConstraint constraints;
+    constraints.voiceCount = 4;
+    constraints.maximumLeap = 12;
+    const vll::analysis::VoiceAssigner assigner;
+    const auto built = vll::visualization::VoicePathBuilder(assigner).build(
+        progression, constraints);
+    if (!built.complete) return {};
+
+    vll::visualization::VisualizationModel model(built.paths);
+    model.setTimeline({{0, "ii"}, {1'000'000, "V"}, {2'000'000, "I"}});
+    model.setCursor(1'000'000);
+    model.setPlaybackRate(0.5);
+    return vll::visualization::VoiceGraphSvgRenderer{}.render(model.frame());
+}
+
+} // namespace
 
 int main(const int argc, char** argv) {
     const std::string_view command = argc > 1 ? std::string_view(argv[1]) : std::string_view{};
@@ -139,6 +169,27 @@ int main(const int argc, char** argv) {
         midiSession.disconnect();
         piano.allNotesOff();
         audioOutput.stop();
+    }
+
+    if (command == "--visualizer-smoke" || command == "--export-visualizer-svg") {
+        const auto svg = createVisualizerFixtureSvg();
+        if (svg.find("Voice-leading graph") == std::string::npos ||
+            svg.find(">ii</text>") == std::string::npos ||
+            svg.find("-1 semitone") == std::string::npos) {
+            return 14;
+        }
+        if (command == "--export-visualizer-svg") {
+            if (argc < 3) {
+                std::cerr << "Usage: voice-leading-lab --export-visualizer-svg <output.svg>\n";
+                return 15;
+            }
+            std::ofstream output(argv[2], std::ios::binary | std::ios::trunc);
+            output << svg;
+            if (!output) return 16;
+            std::cout << "Visualizer SVG written to " << argv[2] << '\n';
+        } else {
+            std::cout << "VISUALIZER_SMOKE_OK\n";
+        }
     }
 
     if (smokeTest) std::cout << "SMOKE_TEST_OK\n";
