@@ -43,3 +43,21 @@ relevant keyboard state, isolation, and playback rate. A deterministic SVG
 adapter proves the rendering contract without coupling the core to a desktop UI
 framework. Slow and isolated playback are emitted as timestamped note events for
 the existing instrument boundary.
+
+## ADR-009: Notation layout is deterministic and renderer-independent
+
+Notation consumes timestamped pitch, voice, fingering, duration, and chord-symbol
+data rather than UI objects. A layout pass resolves staff assignment, pitch
+spelling, accidental memory, ledger lines, collision offsets, system wrapping,
+scaling, and cursor position before the SVG adapter draws any glyphs. This keeps
+engraving behavior testable and permits a later desktop renderer to reuse the
+same geometry and document contract.
+
+## ADR-010: Feedback is structured fact, not generated judgment
+
+Feedback is derived from assigned voice transitions and explicit chord context.
+The engine reports exact pitches, direction, interval size, common tones,
+crossing pairs, and guide-tone arrivals or departures in stable voice order. It
+does not infer harmonic function, stylistic quality, or student intent. Later
+curriculum and explanation layers may select or explain these observations but
+cannot alter the underlying facts.

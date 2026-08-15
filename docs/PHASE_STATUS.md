@@ -123,3 +123,57 @@ Phase 4 exit evidence: the ii-V-I fixture produces four persistent, individually
 labeled paths; semitone and stationary guide-tone motion is explicit; isolation,
 keyboard state, timeline, zoom, playback rate, SVG export, and the visualizer
 smoke command pass under the strict build.
+
+## Phase 5: Notation
+
+Implemented:
+
+- A renderer-independent notation document and deterministic engraving layout.
+- Compact grand-staff systems with treble and bass clefs, brace, meter, barlines,
+  shared chord stems, filled and open noteheads, and no stretched short phrases.
+- Sharp and flat pitch spelling, per-system accidental memory, natural signs,
+  ledger lines, adjacent-second notehead offsets, and multi-column accidental
+  collision avoidance.
+- Chord symbols, persistent voice labels, selectable voice emphasis, optional
+  fingering, and a time-interpolated playback cursor.
+- Scale control from 0.5x to 2.0x, bounded system width, and deterministic wrapping.
+- A four-voice ii-V-I fixture, CLI SVG export, notation smoke command, and study
+  workspace controls in the app shell.
+
+Known limitations:
+
+- The framework-independent SVG renderer establishes the notation contract;
+  interactive desktop selection and pointer controls remain UI-adapter work.
+- Pitch spelling currently uses a global sharp/flat preference and does not infer
+  enharmonic spelling from harmonic context or key signatures.
+- Rhythmic engraving supports chord-level filled/open noteheads and stems, not
+  beams, rests, ties, tuplets, or arbitrary polyphonic rhythm.
+
+Phase 5 exit evidence: compact ii-V-I notation, staff assignment, accidental
+state, ledger lines, collision offsets, wrapping, scaling, display toggles,
+fingering, voice emphasis, cursor interpolation, SVG export, and the notation
+smoke command pass under the strict build and rendered screenshot QA.
+
+## Phase 6: Deterministic feedback
+
+Implemented:
+
+- Structured feedback context and reports independent of the presentation layer.
+- Exact per-voice source pitch, destination pitch, direction, semitone distance,
+  and stationary, semitone, whole-step, or leap classification.
+- Exact common-tone counts, stepwise-move counts, leap counts, total displacement,
+  and crossing pairs.
+- Guide-tone connections, arrivals, and departures derived only from explicitly
+  supplied source and destination chord context.
+- Stable feedback ordering by persistent voice ID, sharp or flat pitch naming,
+  explicit ambiguity reporting, and a no-data result for missing assignments.
+- Study-workspace feedback regions and a deterministic ii-to-V CLI smoke fixture.
+
+Known limitation:
+
+- Harmonic recognition is not part of this phase. Chord labels and guide-tone
+  pitch classes must come from an exercise or later harmonic-analysis module.
+
+Phase 6 exit evidence: canonical movement, common-tone, crossing, guide-tone,
+pitch-spelling, ordering, ambiguity, and empty-input fixtures produce exact
+asserted facts under the strict build, sanitizer run, and feedback smoke command.

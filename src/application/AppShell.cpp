@@ -21,6 +21,14 @@ WorkspaceLayout AppShell::layout() const {
             "Voice isolation / playback / zoom / instrument controls"
         };
     }
+    if (activeRoute_ == Route::Learn || activeRoute_ == Route::Practice ||
+        activeRoute_ == Route::BarryHarris) {
+        return {
+            "Navigation / lesson or exercise list",
+            "Compact grand staff / voice graph / relevant keyboard",
+            "Deterministic movement facts / guide-tone context / notation controls"
+        };
+    }
     return {
         activeRoute_ == Route::Home ? "Navigation" : "Navigation / lesson or exercise list",
         activeRoute_ == Route::Home ? "Connect MIDI keyboard to begin" :

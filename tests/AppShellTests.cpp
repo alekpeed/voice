@@ -22,3 +22,13 @@ TEST_CASE("visualizer route exposes Phase 4 controls") {
     REQUIRE(layout.rightPanel.find("isolation") != std::string::npos);
     REQUIRE(layout.rightPanel.find("zoom") != std::string::npos);
 }
+
+TEST_CASE("study routes expose notation and deterministic feedback") {
+    vll::application::AppShell shell;
+    shell.navigate(vll::application::Route::Practice);
+    const auto layout = shell.layout();
+    REQUIRE(layout.centerPanel.find("grand staff") != std::string::npos);
+    REQUIRE(layout.rightPanel.find("movement facts") != std::string::npos);
+    REQUIRE(layout.rightPanel.find("guide-tone") != std::string::npos);
+    REQUIRE(layout.rightPanel.find("notation controls") != std::string::npos);
+}
