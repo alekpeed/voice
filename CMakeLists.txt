@@ -23,6 +23,7 @@ add_library(vll_core
     src/audio/VelocityCurve.cpp
     src/core/Logger.cpp
     src/core/Settings.cpp
+    src/curriculum/BookCurriculumEngine.cpp
     src/curriculum/CurriculumCatalog.cpp
     src/curriculum/FundamentalCourse.cpp
     src/exercise/DeterministicExerciseGenerator.cpp
@@ -54,6 +55,7 @@ if(VLL_BUILD_TESTS)
         tests/TestMain.cpp
         tests/AppShellTests.cpp
         tests/AudioSampleTests.cpp
+        tests/BookCurriculumEngineTests.cpp
         tests/CurriculumCatalogTests.cpp
         tests/FeedbackTests.cpp
         tests/ExerciseGeneratorTests.cpp

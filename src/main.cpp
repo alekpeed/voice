@@ -6,6 +6,7 @@
 #include "vll/audio/MidiAudioRouter.h"
 #include "vll/core/Logger.h"
 #include "vll/core/Settings.h"
+#include "vll/curriculum/BookCurriculumEngine.h"
 #include "vll/curriculum/FundamentalCourse.h"
 #include "vll/exercise/DeterministicExerciseGenerator.h"
 #include "vll/midi/LinuxRawMidiInput.h"
@@ -328,6 +329,24 @@ int main(const int argc, char** argv) {
             return 25;
         }
         std::cout << "GENERATOR_SMOKE_OK\n";
+    }
+
+    if (command == "--book-smoke") {
+        vll::curriculum::BookCurriculumEngine curriculum;
+        const auto route = curriculum.bookRoute("VL-05.2");
+        if (!route || route->practiceUnitId != "VL-U05" ||
+            route->exerciseIds.size() != 5 ||
+            curriculum.prerequisitesMet("VL-05.2")) {
+            return 26;
+        }
+        for (int attempt = 0; attempt < 4; ++attempt) {
+            curriculum.recordEvidence("VL-05.1", true, false, attempt >= 2);
+        }
+        if (!curriculum.prerequisitesMet("VL-05.2") ||
+            curriculum.competency("VL-05.1") != vll::curriculum::Competency::Fluent) {
+            return 27;
+        }
+        std::cout << "BOOK_SMOKE_OK\n";
     }
 
     if (smokeTest) std::cout << "SMOKE_TEST_OK\n";
