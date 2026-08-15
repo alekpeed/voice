@@ -61,3 +61,12 @@ crossing pairs, and guide-tone arrivals or departures in stable voice order. It
 does not infer harmonic function, stylistic quality, or student intent. Later
 curriculum and explanation layers may select or explain these observations but
 cannot alter the underlying facts.
+
+## ADR-011: The first course path composes existing deterministic subsystems
+
+The fundamental ii-V-I course is a fixed, book-linked sequence rather than a
+general exercise generator. Each accepted performance passes through two-voice
+assignment, voice-path construction, deterministic feedback, and notation
+document creation. Course progression advances only after the expected pitches
+are present at every event. This proves the end-to-end learning flow while
+leaving transposition and generated solution spaces to Phase 8.
