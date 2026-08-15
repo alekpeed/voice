@@ -4,7 +4,7 @@ Desktop-first piano training software centered on voice paths rather than chord 
 
 ## Current milestone
 
-Phase 0 repository foundation. The project currently provides subsystem contracts, app-shell state, logging, settings, deterministic tests, and CI. MIDI, audio, music analysis, notation, persistence, and curriculum implementations intentionally begin in later phases.
+Phases 0-1 are implemented. The project provides subsystem contracts, app-shell state, logging, settings, deterministic tests, CI, Linux raw-MIDI input, a resilient MIDI parser/session, event monitoring, sustain handling, and virtual MIDI fixtures. Audio, music analysis, notation, persistence, and curriculum implementations begin in later phases.
 
 ## Build
 
@@ -22,6 +22,13 @@ Minimal Linux fallback when CMake is unavailable:
 ```sh
 make test
 make run
+```
+
+List Linux raw-MIDI inputs or run the deterministic MIDI smoke test:
+
+```sh
+./build/voice-leading-lab --list-midi
+./build/voice-leading-lab --midi-smoke
 ```
 
 ## Architecture

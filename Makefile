@@ -1,9 +1,12 @@
 CXX ?= c++
-CXXFLAGS ?= -std=c++20 -Wall -Wextra -Wpedantic -Werror -Iinclude -O2
+CXXFLAGS ?= -std=c++20 -Wall -Wextra -Wpedantic -Werror -Iinclude -O2 -pthread
 BUILD_DIR := build
-CORE_SOURCES := src/application/AppShell.cpp src/core/Logger.cpp src/core/Settings.cpp
+CORE_SOURCES := src/application/AppShell.cpp src/core/Logger.cpp src/core/Settings.cpp \
+	src/midi/LinuxRawMidiInput.cpp src/midi/MidiByteStreamParser.cpp \
+	src/midi/MidiSession.cpp src/midi/VirtualMidiInput.cpp
 APP_SOURCES := $(CORE_SOURCES) src/main.cpp
-TEST_SOURCES := $(CORE_SOURCES) tests/TestMain.cpp tests/AppShellTests.cpp tests/SettingsTests.cpp tests/TypesTests.cpp
+TEST_SOURCES := $(CORE_SOURCES) tests/TestMain.cpp tests/AppShellTests.cpp tests/MidiParserTests.cpp \
+	tests/MidiSessionTests.cpp tests/SettingsTests.cpp tests/TypesTests.cpp
 
 .PHONY: all test run clean
 

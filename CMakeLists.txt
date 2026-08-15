@@ -1,6 +1,8 @@
 cmake_minimum_required(VERSION 3.20)
 project(VoiceLeadingLab VERSION 0.1.0 LANGUAGES CXX)
 
+find_package(Threads REQUIRED)
+
 set(CMAKE_CXX_STANDARD 20)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(CMAKE_CXX_EXTENSIONS OFF)
@@ -12,8 +14,13 @@ add_library(vll_core
     src/application/AppShell.cpp
     src/core/Logger.cpp
     src/core/Settings.cpp
+    src/midi/LinuxRawMidiInput.cpp
+    src/midi/MidiByteStreamParser.cpp
+    src/midi/MidiSession.cpp
+    src/midi/VirtualMidiInput.cpp
 )
 target_include_directories(vll_core PUBLIC include)
+target_link_libraries(vll_core PUBLIC Threads::Threads)
 target_compile_options(vll_core PRIVATE -Wall -Wextra -Wpedantic)
 if(VLL_WARNINGS_AS_ERRORS)
     target_compile_options(vll_core PRIVATE -Werror)
@@ -27,6 +34,8 @@ if(VLL_BUILD_TESTS)
     add_executable(vll_tests
         tests/TestMain.cpp
         tests/AppShellTests.cpp
+        tests/MidiParserTests.cpp
+        tests/MidiSessionTests.cpp
         tests/SettingsTests.cpp
         tests/TypesTests.cpp
     )

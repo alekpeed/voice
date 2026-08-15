@@ -17,3 +17,5 @@ jobs:
         run: ctest --test-dir build --output-on-failure
       - name: Smoke test
         run: ./build/voice-leading-lab --smoke-test
+      - name: MIDI smoke test
+        run: ./build/voice-leading-lab --midi-smoke
