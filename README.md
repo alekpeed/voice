@@ -1,10 +1,21 @@
 # Voice Leading Lab
 
-Desktop-first piano training software centered on voice paths rather than chord labels.
+Native Android tablet piano training software centered on voice paths rather than chord labels.
 
 ## Current milestone
 
-Phases 0-19 are implemented. Voice Leading Lab now includes the complete deterministic engine, book-aligned curriculum, instrument workshop, melody and reharmonization tools, Barry Harris modules, ear training, free-play analysis, progression practice, optional structured tutor boundary, accessibility settings, backup/import, packaging, and release validation. The study PDFs remain the canonical curriculum source.
+The primary application is Kotlin with Jetpack Compose, designed for Samsung Galaxy Tab in landscape orientation. It includes the deterministic engine, book-aligned curriculum, instrument workshop, melody and reharmonization tools, Barry Harris modules, ear training, free-play analysis, progression practice, Android MIDI, persistent progress, and all three bundled study PDFs. The former Linux C++ implementation remains as a tested reference during the port.
+
+## Android build
+
+Open the repository in Android Studio, sync Gradle, select the `app` configuration, and run it on the Galaxy Tab. The project targets Android API 36 and supports API 28 or newer.
+
+Command-line validation:
+
+```sh
+./gradlew :app:testDebugUnitTest
+./gradlew :app:assembleDebug
+```
 
 ## Build
 

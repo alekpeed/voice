@@ -3,3 +3,6 @@
 .cache/
 .idea/
 .vscode/
+.gradle/
+local.properties
+app/build/
