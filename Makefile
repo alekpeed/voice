@@ -11,6 +11,7 @@ CORE_SOURCES := src/barry/BarryHarrisEngine.cpp src/ear/EarTrainingEngine.cpp \
 	src/exercise/DeterministicExerciseGenerator.cpp src/exercise/NearestVoicingSolver.cpp \
 	src/harmony/MelodyHarmonizer.cpp src/lab/ReharmonizationLab.cpp \
 	src/freeplay/SessionAnalyzer.cpp src/practice/ProgressionPractice.cpp src/tutor/StructuredTutor.cpp \
+	src/release/ReleaseReadiness.cpp \
 	src/audio/AudioSample.cpp src/audio/InstrumentWorkshop.cpp src/audio/LinuxAlsaOutput.cpp src/audio/MidiAudioRouter.cpp \
 	src/audio/SamplePiano.cpp src/audio/SfzPianoLoader.cpp src/audio/VelocityCurve.cpp \
 	src/midi/LinuxRawMidiInput.cpp src/midi/MidiByteStreamParser.cpp \
@@ -19,7 +20,7 @@ CORE_SOURCES := src/barry/BarryHarrisEngine.cpp src/ear/EarTrainingEngine.cpp \
 	src/visualization/VisualizationModel.cpp src/visualization/VoiceGraphSvgRenderer.cpp \
 	src/visualization/VoicePathBuilder.cpp
 APP_SOURCES := $(CORE_SOURCES) src/main.cpp
-TEST_SOURCES := $(CORE_SOURCES) tests/TestMain.cpp tests/AppShellTests.cpp tests/AdvancedPhaseTests.cpp tests/BarryHarrisTests.cpp tests/EarTrainingTests.cpp tests/MidiParserTests.cpp \
+TEST_SOURCES := $(CORE_SOURCES) tests/TestMain.cpp tests/AppShellTests.cpp tests/AdvancedPhaseTests.cpp tests/BarryHarrisTests.cpp tests/EarTrainingTests.cpp tests/ReleaseReadinessTests.cpp tests/MidiParserTests.cpp \
 	tests/AudioSampleTests.cpp tests/MidiSessionTests.cpp tests/NotationTests.cpp tests/SamplePianoTests.cpp \
 	tests/BookCurriculumEngineTests.cpp tests/CurriculumCatalogTests.cpp \
 	tests/FeedbackTests.cpp tests/ExerciseGeneratorTests.cpp \
