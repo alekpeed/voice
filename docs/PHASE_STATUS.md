@@ -233,3 +233,27 @@ Phase 8 exit evidence: all twelve keys, 2/3/4 voices, all four exercise modes,
 seed reproduction, seed variation, transposition, hard locks, alternate-response
 evaluation, and invalid-input fixtures pass strict tests, sanitizers, and the
 exercise-generator smoke command.
+
+## Phase 9: Book integration
+
+Implemented:
+
+- Stable `VL-01.1` through `VL-16.4` concept lookup as the sole progress identity.
+- Exact routes from each concept to Study Guide and Practice Companion pages,
+  the matching `VL-U*` unit, and its five printed `VL-EX-*` exercises.
+- A deterministic prerequisite graph spanning all 64 concepts.
+- Evidence-derived Not Started, Introduced, Developing, Reliable, and Fluent
+  competency levels using attempts, hint use, and transposed success.
+- Explicit unmet-prerequisite queries, invalid-ID handling, Progress workspace
+  contract, and a book-integration CLI/CI smoke fixture.
+
+Known limitation:
+
+- Competency evidence is currently process-local. Durable storage belongs to
+  the persistence adapter phase; the curriculum contract no longer depends on
+  a particular storage technology.
+
+Phase 9 exit evidence: all 64 canonical IDs resolve, book routes preserve exact
+source pages and printed exercise identities, prerequisites gate at Reliable,
+and every competency threshold passes strict tests, sanitizers, and the book
+integration smoke command.

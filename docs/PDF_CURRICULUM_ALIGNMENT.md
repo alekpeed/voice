@@ -55,3 +55,15 @@ and prose remain in the included PDFs.
 Automated tests enforce source counts, unique IDs, complete cross-volume
 coverage, five printed exercises per unit, Barry Harris chapter coverage, and
 the competency mapping.
+
+## Competency evidence
+
+`BookCurriculumEngine` uses the stable `VL-*` identity as its only progress key.
+The ordered concept graph makes each concept depend on the preceding concept;
+the first concept has no prerequisite. A prerequisite is met at Reliable or
+Fluent competency.
+
+Competency is computed from evidence rather than set directly: any attempt is
+Introduced, two successes are Developing, three unassisted successes are
+Reliable, and four unassisted successes including two transposed successes are
+Fluent. Hinted successes count toward Developing but not Reliable or Fluent.

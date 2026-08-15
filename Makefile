@@ -5,7 +5,8 @@ BUILD_DIR := build
 CORE_SOURCES := src/analysis/DeterministicFeedback.cpp src/analysis/VoiceAssigner.cpp \
 	src/analysis/VoiceLeadingEvaluator.cpp \
 	src/application/AppShell.cpp src/core/Logger.cpp src/core/Settings.cpp \
-	src/curriculum/CurriculumCatalog.cpp src/curriculum/FundamentalCourse.cpp \
+	src/curriculum/BookCurriculumEngine.cpp src/curriculum/CurriculumCatalog.cpp \
+	src/curriculum/FundamentalCourse.cpp \
 	src/exercise/DeterministicExerciseGenerator.cpp src/exercise/NearestVoicingSolver.cpp \
 	src/audio/AudioSample.cpp src/audio/LinuxAlsaOutput.cpp src/audio/MidiAudioRouter.cpp \
 	src/audio/SamplePiano.cpp src/audio/SfzPianoLoader.cpp src/audio/VelocityCurve.cpp \
@@ -17,7 +18,8 @@ CORE_SOURCES := src/analysis/DeterministicFeedback.cpp src/analysis/VoiceAssigne
 APP_SOURCES := $(CORE_SOURCES) src/main.cpp
 TEST_SOURCES := $(CORE_SOURCES) tests/TestMain.cpp tests/AppShellTests.cpp tests/MidiParserTests.cpp \
 	tests/AudioSampleTests.cpp tests/MidiSessionTests.cpp tests/NotationTests.cpp tests/SamplePianoTests.cpp \
-	tests/CurriculumCatalogTests.cpp tests/FeedbackTests.cpp tests/ExerciseGeneratorTests.cpp \
+	tests/BookCurriculumEngineTests.cpp tests/CurriculumCatalogTests.cpp \
+	tests/FeedbackTests.cpp tests/ExerciseGeneratorTests.cpp \
 	tests/FundamentalCourseTests.cpp \
 	tests/SettingsTests.cpp tests/SonorityDetectorTests.cpp tests/TypesTests.cpp \
 	tests/VelocityCurveTests.cpp tests/VoiceAssignmentTests.cpp tests/VisualizationTests.cpp

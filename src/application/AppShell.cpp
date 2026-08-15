@@ -23,9 +23,16 @@ WorkspaceLayout AppShell::layout() const {
     }
     if (activeRoute_ == Route::Learn || activeRoute_ == Route::Practice) {
         return {
-            "Fundamental course / current step / canonical book links",
+            "Canonical VL concepts / prerequisites / Study Guide and Practice Companion links",
             "Compact grand staff / voice graph / relevant keyboard",
-            "Exercise type / key / voices / outer-voice locks / deterministic feedback"
+            "Competency evidence / Exercise type / key / voices / deterministic feedback"
+        };
+    }
+    if (activeRoute_ == Route::Progress) {
+        return {
+            "VL concept map / prerequisite status",
+            "Not Started / Introduced / Developing / Reliable / Fluent",
+            "Attempts / unassisted success / transposed evidence / book routes"
         };
     }
     return {

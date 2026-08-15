@@ -80,3 +80,11 @@ tones, voice count, spacing, movement, and optional bass/soprano locks, then
 orders valid solutions by total displacement, largest movement, span, and pitch.
 Submission re-evaluates the played voicing against those facts, allowing any
 equally optimal solution rather than requiring byte-for-byte target imitation.
+
+## ADR-013: Book identity and competency evidence are separate from pagination
+
+Volume I `VL-*` concept IDs are the progress and prerequisite keys. PDF source
+IDs, pages, Practice Companion units, and printed exercise IDs are routing
+metadata and may change without invalidating progress. Competency is derived
+from recorded attempts, hint use, and transposed unassisted success; it is never
+assigned directly by a presentation layer.

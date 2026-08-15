@@ -27,11 +27,21 @@ TEST_CASE("study routes expose notation and deterministic feedback") {
     vll::application::AppShell shell;
     shell.navigate(vll::application::Route::Practice);
     const auto layout = shell.layout();
-    REQUIRE(layout.leftPanel.find("Fundamental course") != std::string::npos);
-    REQUIRE(layout.leftPanel.find("canonical book links") != std::string::npos);
+    REQUIRE(layout.leftPanel.find("Canonical VL concepts") != std::string::npos);
+    REQUIRE(layout.leftPanel.find("Practice Companion links") != std::string::npos);
     REQUIRE(layout.centerPanel.find("grand staff") != std::string::npos);
     REQUIRE(layout.rightPanel.find("Exercise type") != std::string::npos);
     REQUIRE(layout.rightPanel.find("voices") != std::string::npos);
-    REQUIRE(layout.rightPanel.find("outer-voice locks") != std::string::npos);
+    REQUIRE(layout.rightPanel.find("Competency evidence") != std::string::npos);
     REQUIRE(layout.rightPanel.find("deterministic feedback") != std::string::npos);
+}
+
+TEST_CASE("progress route exposes prerequisites competency and book routes") {
+    vll::application::AppShell shell;
+    shell.navigate(vll::application::Route::Progress);
+    const auto layout = shell.layout();
+    REQUIRE(layout.leftPanel.find("prerequisite") != std::string::npos);
+    REQUIRE(layout.centerPanel.find("Fluent") != std::string::npos);
+    REQUIRE(layout.rightPanel.find("transposed evidence") != std::string::npos);
+    REQUIRE(layout.rightPanel.find("book routes") != std::string::npos);
 }
