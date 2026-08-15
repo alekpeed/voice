@@ -27,6 +27,8 @@ add_library(vll_core
     src/midi/MidiByteStreamParser.cpp
     src/midi/MidiSession.cpp
     src/midi/VirtualMidiInput.cpp
+    src/notation/NotationLayout.cpp
+    src/notation/SvgNotationRenderer.cpp
     src/performance/SonorityDetector.cpp
     src/visualization/VisualizationModel.cpp
     src/visualization/VoiceGraphSvgRenderer.cpp
@@ -56,6 +58,7 @@ if(VLL_BUILD_TESTS)
         tests/VisualizationTests.cpp
         tests/MidiParserTests.cpp
         tests/MidiSessionTests.cpp
+        tests/NotationTests.cpp
         tests/SettingsTests.cpp
         tests/TypesTests.cpp
     )

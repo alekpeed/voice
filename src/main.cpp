@@ -8,6 +8,7 @@
 #include "vll/midi/LinuxRawMidiInput.h"
 #include "vll/midi/MidiSession.h"
 #include "vll/midi/VirtualMidiInput.h"
+#include "vll/notation/SvgNotationRenderer.h"
 #include "vll/visualization/VisualizationModel.h"
 #include "vll/visualization/VoiceGraphSvgRenderer.h"
 #include "vll/visualization/VoicePathBuilder.h"
@@ -44,6 +45,25 @@ std::string createVisualizerFixtureSvg() {
     model.setCursor(1'000'000);
     model.setPlaybackRate(0.5);
     return vll::visualization::VoiceGraphSvgRenderer{}.render(model.frame());
+}
+
+std::string createNotationFixtureSvg() {
+    const vll::notation::NotationDocument document{
+        {
+            {0, {{{50}, 1, 5, false}, {{53}, 2, 3, false},
+                 {{60}, 3, 2, true}, {{64}, 4, 1, false}}, "Dm9", 1.0},
+            {1'000'000, {{{43}, 1, 5, false}, {{53}, 2, 3, false},
+                         {{59}, 3, 2, true}, {{64}, 4, 1, false}}, "G13", 1.0},
+            {2'000'000, {{{48}, 1, 5, false}, {{52}, 2, 3, false},
+                         {{59}, 3, 2, true}, {{62}, 4, 1, false}}, "Cmaj9", 2.0},
+        },
+        500'000,
+    };
+    vll::notation::EngravingOptions options;
+    options.showAnalysisMarks = false;
+    options.showFingering = false;
+    options.highlightedVoice = 3;
+    return vll::notation::SvgNotationRenderer{}.render(document, options).scalableVectorData;
 }
 
 } // namespace
@@ -189,6 +209,29 @@ int main(const int argc, char** argv) {
             std::cout << "Visualizer SVG written to " << argv[2] << '\n';
         } else {
             std::cout << "VISUALIZER_SMOKE_OK\n";
+        }
+    }
+
+    if (command == "--notation-smoke" || command == "--export-notation-svg") {
+        const auto svg = createNotationFixtureSvg();
+        if (svg.find("Grand-staff notation") == std::string::npos ||
+            svg.find("Dm9") == std::string::npos ||
+            svg.find("data-role=\"ledger-line\"") == std::string::npos ||
+            svg.find("data-role=\"voice-highlight\"") == std::string::npos ||
+            svg.find("data-role=\"playback-cursor\"") == std::string::npos) {
+            return 17;
+        }
+        if (command == "--export-notation-svg") {
+            if (argc < 3) {
+                std::cerr << "Usage: voice-leading-lab --export-notation-svg <output.svg>\n";
+                return 18;
+            }
+            std::ofstream output(argv[2], std::ios::binary | std::ios::trunc);
+            output << svg;
+            if (!output) return 19;
+            std::cout << "Notation SVG written to " << argv[2] << '\n';
+        } else {
+            std::cout << "NOTATION_SMOKE_OK\n";
         }
     }
 

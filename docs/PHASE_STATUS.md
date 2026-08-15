@@ -123,3 +123,33 @@ Phase 4 exit evidence: the ii-V-I fixture produces four persistent, individually
 labeled paths; semitone and stationary guide-tone motion is explicit; isolation,
 keyboard state, timeline, zoom, playback rate, SVG export, and the visualizer
 smoke command pass under the strict build.
+
+## Phase 5: Notation
+
+Implemented:
+
+- A renderer-independent notation document and deterministic engraving layout.
+- Compact grand-staff systems with treble and bass clefs, brace, meter, barlines,
+  shared chord stems, filled and open noteheads, and no stretched short phrases.
+- Sharp and flat pitch spelling, per-system accidental memory, natural signs,
+  ledger lines, adjacent-second notehead offsets, and multi-column accidental
+  collision avoidance.
+- Chord symbols, persistent voice labels, selectable voice emphasis, optional
+  fingering, and a time-interpolated playback cursor.
+- Scale control from 0.5x to 2.0x, bounded system width, and deterministic wrapping.
+- A four-voice ii-V-I fixture, CLI SVG export, notation smoke command, and study
+  workspace controls in the app shell.
+
+Known limitations:
+
+- The framework-independent SVG renderer establishes the notation contract;
+  interactive desktop selection and pointer controls remain UI-adapter work.
+- Pitch spelling currently uses a global sharp/flat preference and does not infer
+  enharmonic spelling from harmonic context or key signatures.
+- Rhythmic engraving supports chord-level filled/open noteheads and stems, not
+  beams, rests, ties, tuplets, or arbitrary polyphonic rhythm.
+
+Phase 5 exit evidence: compact ii-V-I notation, staff assignment, accidental
+state, ledger lines, collision offsets, wrapping, scaling, display toggles,
+fingering, voice emphasis, cursor interpolation, SVG export, and the notation
+smoke command pass under the strict build and rendered screenshot QA.
