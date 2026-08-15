@@ -29,3 +29,5 @@ jobs:
         run: ./build/voice-leading-lab --feedback-smoke
       - name: Fundamental course smoke test
         run: ./build/voice-leading-lab --course-smoke
+      - name: Exercise generator smoke test
+        run: ./build/voice-leading-lab --generator-smoke

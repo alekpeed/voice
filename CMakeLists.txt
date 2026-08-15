@@ -25,6 +25,8 @@ add_library(vll_core
     src/core/Settings.cpp
     src/curriculum/CurriculumCatalog.cpp
     src/curriculum/FundamentalCourse.cpp
+    src/exercise/DeterministicExerciseGenerator.cpp
+    src/exercise/NearestVoicingSolver.cpp
     src/midi/LinuxRawMidiInput.cpp
     src/midi/MidiByteStreamParser.cpp
     src/midi/MidiSession.cpp
@@ -54,6 +56,7 @@ if(VLL_BUILD_TESTS)
         tests/AudioSampleTests.cpp
         tests/CurriculumCatalogTests.cpp
         tests/FeedbackTests.cpp
+        tests/ExerciseGeneratorTests.cpp
         tests/FundamentalCourseTests.cpp
         tests/SamplePianoTests.cpp
         tests/SonorityDetectorTests.cpp

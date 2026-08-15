@@ -30,7 +30,8 @@ TEST_CASE("study routes expose notation and deterministic feedback") {
     REQUIRE(layout.leftPanel.find("Fundamental course") != std::string::npos);
     REQUIRE(layout.leftPanel.find("canonical book links") != std::string::npos);
     REQUIRE(layout.centerPanel.find("grand staff") != std::string::npos);
-    REQUIRE(layout.rightPanel.find("movement facts") != std::string::npos);
-    REQUIRE(layout.rightPanel.find("guide-tone") != std::string::npos);
-    REQUIRE(layout.rightPanel.find("notation controls") != std::string::npos);
+    REQUIRE(layout.rightPanel.find("Exercise type") != std::string::npos);
+    REQUIRE(layout.rightPanel.find("voices") != std::string::npos);
+    REQUIRE(layout.rightPanel.find("outer-voice locks") != std::string::npos);
+    REQUIRE(layout.rightPanel.find("deterministic feedback") != std::string::npos);
 }

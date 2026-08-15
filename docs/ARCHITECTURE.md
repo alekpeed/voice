@@ -70,3 +70,13 @@ assignment, voice-path construction, deterministic feedback, and notation
 document creation. Course progression advances only after the expected pitches
 are present at every event. This proves the end-to-end learning flow while
 leaving transposition and generated solution spaces to Phase 8.
+
+## ADR-012: Generated exercises store constraints and an optimal benchmark
+
+Exercise seeds use a repository-owned stable random sequence rather than
+implementation-dependent distribution helpers. The nearest-voicing solver
+enumerates the bounded destination register, enforces chord membership, required
+tones, voice count, spacing, movement, and optional bass/soprano locks, then
+orders valid solutions by total displacement, largest movement, span, and pitch.
+Submission re-evaluates the played voicing against those facts, allowing any
+equally optimal solution rather than requiring byte-for-byte target imitation.
