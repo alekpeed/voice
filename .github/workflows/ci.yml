@@ -33,3 +33,5 @@ jobs:
         run: ./build/voice-leading-lab --generator-smoke
       - name: Book integration smoke test
         run: ./build/voice-leading-lab --book-smoke
+      - name: Instrument harmonization and lab smoke test
+        run: ./build/voice-leading-lab --phase-10-12-smoke

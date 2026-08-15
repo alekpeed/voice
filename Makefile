@@ -8,7 +8,8 @@ CORE_SOURCES := src/analysis/DeterministicFeedback.cpp src/analysis/VoiceAssigne
 	src/curriculum/BookCurriculumEngine.cpp src/curriculum/CurriculumCatalog.cpp \
 	src/curriculum/FundamentalCourse.cpp \
 	src/exercise/DeterministicExerciseGenerator.cpp src/exercise/NearestVoicingSolver.cpp \
-	src/audio/AudioSample.cpp src/audio/LinuxAlsaOutput.cpp src/audio/MidiAudioRouter.cpp \
+	src/harmony/MelodyHarmonizer.cpp src/lab/ReharmonizationLab.cpp \
+	src/audio/AudioSample.cpp src/audio/InstrumentWorkshop.cpp src/audio/LinuxAlsaOutput.cpp src/audio/MidiAudioRouter.cpp \
 	src/audio/SamplePiano.cpp src/audio/SfzPianoLoader.cpp src/audio/VelocityCurve.cpp \
 	src/midi/LinuxRawMidiInput.cpp src/midi/MidiByteStreamParser.cpp \
 	src/midi/MidiSession.cpp src/midi/VirtualMidiInput.cpp src/notation/NotationLayout.cpp \
@@ -20,7 +21,8 @@ TEST_SOURCES := $(CORE_SOURCES) tests/TestMain.cpp tests/AppShellTests.cpp tests
 	tests/AudioSampleTests.cpp tests/MidiSessionTests.cpp tests/NotationTests.cpp tests/SamplePianoTests.cpp \
 	tests/BookCurriculumEngineTests.cpp tests/CurriculumCatalogTests.cpp \
 	tests/FeedbackTests.cpp tests/ExerciseGeneratorTests.cpp \
-	tests/FundamentalCourseTests.cpp \
+	tests/FundamentalCourseTests.cpp tests/InstrumentWorkshopTests.cpp \
+	tests/MelodyHarmonizerTests.cpp tests/ReharmonizationLabTests.cpp \
 	tests/SettingsTests.cpp tests/SonorityDetectorTests.cpp tests/TypesTests.cpp \
 	tests/VelocityCurveTests.cpp tests/VoiceAssignmentTests.cpp tests/VisualizationTests.cpp
 

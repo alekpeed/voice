@@ -88,3 +88,11 @@ IDs, pages, Practice Companion units, and printed exercise IDs are routing
 metadata and may change without invalidating progress. Competency is derived
 from recorded attempts, hint use, and transposed unassisted success; it is never
 assigned directly by a presentation layer.
+
+## ADR-014: Instrument character is preset data; harmony tools reuse voice search
+
+Acoustic and electric instrument character, tuning, EQ, and FX order are
+validated preset data independent of sample licensing. Melody harmonization and
+reharmonization labs both reuse the bounded nearest-voicing solver, so fixed
+lines and candidate rankings obey the same deterministic motion constraints as
+generated exercises.
