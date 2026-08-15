@@ -25,3 +25,5 @@ jobs:
         run: ./build/voice-leading-lab --visualizer-smoke
       - name: Notation smoke test
         run: ./build/voice-leading-lab --notation-smoke
+      - name: Feedback smoke test
+        run: ./build/voice-leading-lab --feedback-smoke

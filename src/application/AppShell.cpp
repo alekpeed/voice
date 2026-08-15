@@ -26,7 +26,7 @@ WorkspaceLayout AppShell::layout() const {
         return {
             "Navigation / lesson or exercise list",
             "Compact grand staff / voice graph / relevant keyboard",
-            "Notation scale / chord symbols / voice highlights / fingering"
+            "Deterministic movement facts / guide-tone context / notation controls"
         };
     }
     return {

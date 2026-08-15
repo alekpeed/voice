@@ -11,6 +11,7 @@ option(VLL_BUILD_TESTS "Build Voice Leading Lab tests" ON)
 option(VLL_WARNINGS_AS_ERRORS "Treat compiler warnings as errors" OFF)
 
 add_library(vll_core
+    src/analysis/DeterministicFeedback.cpp
     src/analysis/VoiceAssigner.cpp
     src/analysis/VoiceLeadingEvaluator.cpp
     src/application/AppShell.cpp
@@ -51,6 +52,7 @@ if(VLL_BUILD_TESTS)
         tests/AppShellTests.cpp
         tests/AudioSampleTests.cpp
         tests/CurriculumCatalogTests.cpp
+        tests/FeedbackTests.cpp
         tests/SamplePianoTests.cpp
         tests/SonorityDetectorTests.cpp
         tests/VelocityCurveTests.cpp
