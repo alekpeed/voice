@@ -75,6 +75,7 @@ std::vector<MonitoredEvent> MidiSession::recentEvents() const {
 
 void MidiSession::receive(NoteEvent event) {
     std::vector<MonitoredEvent> events;
+    events.reserve(2);
     {
         std::lock_guard lock(mutex_);
         event.timestamp = std::max(event.timestamp, lastTimestamp_);
