@@ -33,6 +33,14 @@ List Linux raw-MIDI inputs or run the deterministic MIDI smoke test:
 ./build/voice-leading-lab --alsa-null-smoke
 ```
 
+Play an installed SFZ piano from a connected MIDI keyboard:
+
+```sh
+./build/voice-leading-lab --play-piano /path/to/piano.sfz
+```
+
+The first detected Linux raw-MIDI input and default ALSA output are used. Optional explicit device arguments are documented in `docs/SAMPLE_PACKS.md`.
+
 ## Architecture
 
 Subsystem boundaries are defined under `include/vll`. The user interface and audio technology remain replaceable behind interfaces. JUCE, SQLite, the production notation renderer, and instrument/sample engines will be integrated in their designated phases without coupling them to the education logic.

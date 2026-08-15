@@ -1,6 +1,7 @@
 #include "vll/application/AppShell.h"
 #include "vll/audio/SamplePiano.h"
 #include "vll/audio/LinuxAlsaOutput.h"
+#include "vll/audio/MidiAudioRouter.h"
 #include "vll/core/Logger.h"
 #include "vll/core/Settings.h"
 #include "vll/midi/LinuxRawMidiInput.h"
@@ -12,6 +13,7 @@
 #include <chrono>
 #include <iostream>
 #include <memory>
+#include <filesystem>
 #include <string_view>
 #include <thread>
 #include <vector>
@@ -90,6 +92,53 @@ int main(const int argc, char** argv) {
         std::this_thread::sleep_for(std::chrono::milliseconds(30));
         output.stop();
         std::cout << "ALSA_NULL_SMOKE_OK\n";
+    }
+
+    if (command == "--play-piano") {
+        if (argc < 3) {
+            std::cerr << "Usage: voice-leading-lab --play-piano <piano.sfz> [midi-device] [alsa-device]\n";
+            return 8;
+        }
+        auto loaded = vll::audio::SfzPianoLoader::load(std::filesystem::path(argv[2]));
+        if (!loaded.definition) {
+            std::cerr << loaded.error << '\n';
+            return 9;
+        }
+        for (const auto& warning : loaded.warnings) std::cerr << "Sample warning: " << warning << '\n';
+        vll::audio::SamplePiano piano;
+        if (!piano.loadDefinition(std::move(*loaded.definition))) return 10;
+
+        vll::midi::LinuxRawMidiInput midiInput;
+        const auto midiDevices = midiInput.devices();
+        if (midiDevices.empty()) {
+            std::cerr << "No Linux raw-MIDI input devices found\n";
+            return 11;
+        }
+        const std::string midiDevice = argc >= 4 ? argv[3] : midiDevices.front().id;
+        const std::string audioDevice = argc >= 5 ? argv[4] : "default";
+
+        vll::audio::LinuxAlsaOutput audioOutput;
+        if (!audioOutput.start(piano, audioDevice, 48000, 128, 10000)) {
+            std::cerr << audioOutput.lastError() << '\n';
+            return 12;
+        }
+        vll::audio::MidiAudioRouter router(piano);
+        vll::midi::MidiSession midiSession(midiInput);
+        midiSession.setEventHandler([&router](const vll::midi::MonitoredEvent& event) {
+            router.process(event.event);
+        });
+        if (!midiSession.connect(midiDevice)) {
+            std::cerr << "Unable to connect MIDI input: " << midiDevice << '\n';
+            audioOutput.stop();
+            return 13;
+        }
+        std::cout << "Playing " << piano.loadedPresetName() << " from " << midiDevice
+                  << " through ALSA " << audioDevice << ". Press Enter to stop.\n";
+        std::string ignored;
+        std::getline(std::cin, ignored);
+        midiSession.disconnect();
+        piano.allNotesOff();
+        audioOutput.stop();
     }
 
     if (smokeTest) std::cout << "SMOKE_TEST_OK\n";
