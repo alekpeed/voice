@@ -271,3 +271,14 @@ copyrighted samples. Realism depends on separately licensed sample/model assets.
 Exit evidence: workshop ranges and DSP math, candidate ordering, melody locks,
 independent-line constraints, impossible cases, and saved labs pass strict tests,
 sanitizers, and the combined Phase 10-12 smoke command.
+
+## Phases 13-15: Barry Harris and ear training
+
+Implemented: major/minor sixth-diminished fields, family-aware melody-top
+inversions, borrowed voices, four related dominants, minor-sixth bass
+reinterpretation, deterministic moving-voice/common-tone tasks, reconstruction
+answers, and isolated-voice playback.
+
+Exit evidence: canonical collections, inversions, borrowing, related dominants,
+seed reproduction, exact answers, and balanced isolated playback pass strict
+tests and the combined Phase 13-15 smoke command.

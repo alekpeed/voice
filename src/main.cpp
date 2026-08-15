@@ -1,4 +1,5 @@
 #include "vll/application/AppShell.h"
+#include "vll/barry/BarryHarrisEngine.h"
 #include "vll/analysis/DeterministicFeedback.h"
 #include "vll/analysis/VoiceAssigner.h"
 #include "vll/audio/SamplePiano.h"
@@ -10,6 +11,7 @@
 #include "vll/curriculum/BookCurriculumEngine.h"
 #include "vll/curriculum/FundamentalCourse.h"
 #include "vll/exercise/DeterministicExerciseGenerator.h"
+#include "vll/ear/EarTrainingEngine.h"
 #include "vll/harmony/MelodyHarmonizer.h"
 #include "vll/lab/ReharmonizationLab.h"
 #include "vll/midi/LinuxRawMidiInput.h"
@@ -366,6 +368,18 @@ int main(const int argc, char** argv) {
             {vll::Pitch{60}, vll::Pitch{59}}, {vll::Pitch{50}, vll::Pitch{43}}, {}};
         if (!vll::lab::ReharmonizationLab{}.realize(lab).complete) return 30;
         std::cout << "PHASE_10_12_SMOKE_OK\n";
+    }
+
+    if (command == "--phase-13-15-smoke") {
+        const vll::barry::BarryHarrisEngine barry;
+        const auto field = barry.field(0, false);
+        if (field.collection.size() != 8 || barry.inversions(field, {72}).empty() ||
+            barry.relatedDominantRoots(field).size() != 4) return 31;
+        const vll::ear::EarTrainingEngine ear;
+        const auto prompt = ear.generate(1515, vll::ear::Task::Direction);
+        if (!ear.submit(prompt, prompt.correctAnswer).correct ||
+            ear.isolatedPlayback(prompt).size() != 4) return 32;
+        std::cout << "PHASE_13_15_SMOKE_OK\n";
     }
 
     if (smokeTest) std::cout << "SMOKE_TEST_OK\n";

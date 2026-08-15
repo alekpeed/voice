@@ -2,7 +2,8 @@ CXX ?= c++
 CXXFLAGS ?= -std=c++20 -Wall -Wextra -Wpedantic -Werror -Iinclude -O2 -pthread
 LDLIBS ?= -ldl
 BUILD_DIR := build
-CORE_SOURCES := src/analysis/DeterministicFeedback.cpp src/analysis/VoiceAssigner.cpp \
+CORE_SOURCES := src/barry/BarryHarrisEngine.cpp src/ear/EarTrainingEngine.cpp \
+	src/analysis/DeterministicFeedback.cpp src/analysis/VoiceAssigner.cpp \
 	src/analysis/VoiceLeadingEvaluator.cpp \
 	src/application/AppShell.cpp src/core/Logger.cpp src/core/Settings.cpp \
 	src/curriculum/BookCurriculumEngine.cpp src/curriculum/CurriculumCatalog.cpp \
@@ -17,7 +18,7 @@ CORE_SOURCES := src/analysis/DeterministicFeedback.cpp src/analysis/VoiceAssigne
 	src/visualization/VisualizationModel.cpp src/visualization/VoiceGraphSvgRenderer.cpp \
 	src/visualization/VoicePathBuilder.cpp
 APP_SOURCES := $(CORE_SOURCES) src/main.cpp
-TEST_SOURCES := $(CORE_SOURCES) tests/TestMain.cpp tests/AppShellTests.cpp tests/MidiParserTests.cpp \
+TEST_SOURCES := $(CORE_SOURCES) tests/TestMain.cpp tests/AppShellTests.cpp tests/BarryHarrisTests.cpp tests/EarTrainingTests.cpp tests/MidiParserTests.cpp \
 	tests/AudioSampleTests.cpp tests/MidiSessionTests.cpp tests/NotationTests.cpp tests/SamplePianoTests.cpp \
 	tests/BookCurriculumEngineTests.cpp tests/CurriculumCatalogTests.cpp \
 	tests/FeedbackTests.cpp tests/ExerciseGeneratorTests.cpp \
