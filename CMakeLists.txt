@@ -11,6 +11,8 @@ option(VLL_BUILD_TESTS "Build Voice Leading Lab tests" ON)
 option(VLL_WARNINGS_AS_ERRORS "Treat compiler warnings as errors" OFF)
 
 add_library(vll_core
+    src/analysis/VoiceAssigner.cpp
+    src/analysis/VoiceLeadingEvaluator.cpp
     src/application/AppShell.cpp
     src/audio/AudioSample.cpp
     src/audio/LinuxAlsaOutput.cpp
@@ -25,6 +27,7 @@ add_library(vll_core
     src/midi/MidiByteStreamParser.cpp
     src/midi/MidiSession.cpp
     src/midi/VirtualMidiInput.cpp
+    src/performance/SonorityDetector.cpp
 )
 target_include_directories(vll_core PUBLIC include)
 target_link_libraries(vll_core PUBLIC Threads::Threads ${CMAKE_DL_LIBS})
@@ -44,7 +47,9 @@ if(VLL_BUILD_TESTS)
         tests/AudioSampleTests.cpp
         tests/CurriculumCatalogTests.cpp
         tests/SamplePianoTests.cpp
+        tests/SonorityDetectorTests.cpp
         tests/VelocityCurveTests.cpp
+        tests/VoiceAssignmentTests.cpp
         tests/MidiParserTests.cpp
         tests/MidiSessionTests.cpp
         tests/SettingsTests.cpp
