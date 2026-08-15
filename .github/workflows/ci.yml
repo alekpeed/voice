@@ -19,3 +19,5 @@ jobs:
         run: ./build/voice-leading-lab --smoke-test
       - name: MIDI smoke test
         run: ./build/voice-leading-lab --midi-smoke
+      - name: Audio smoke test
+        run: ./build/voice-leading-lab --audio-smoke

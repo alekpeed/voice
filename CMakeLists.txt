@@ -12,6 +12,12 @@ option(VLL_WARNINGS_AS_ERRORS "Treat compiler warnings as errors" OFF)
 
 add_library(vll_core
     src/application/AppShell.cpp
+    src/audio/AudioSample.cpp
+    src/audio/LinuxAlsaOutput.cpp
+    src/audio/MidiAudioRouter.cpp
+    src/audio/SamplePiano.cpp
+    src/audio/SfzPianoLoader.cpp
+    src/audio/VelocityCurve.cpp
     src/core/Logger.cpp
     src/core/Settings.cpp
     src/midi/LinuxRawMidiInput.cpp
@@ -20,7 +26,7 @@ add_library(vll_core
     src/midi/VirtualMidiInput.cpp
 )
 target_include_directories(vll_core PUBLIC include)
-target_link_libraries(vll_core PUBLIC Threads::Threads)
+target_link_libraries(vll_core PUBLIC Threads::Threads ${CMAKE_DL_LIBS})
 target_compile_options(vll_core PRIVATE -Wall -Wextra -Wpedantic)
 if(VLL_WARNINGS_AS_ERRORS)
     target_compile_options(vll_core PRIVATE -Werror)
@@ -34,6 +40,9 @@ if(VLL_BUILD_TESTS)
     add_executable(vll_tests
         tests/TestMain.cpp
         tests/AppShellTests.cpp
+        tests/AudioSampleTests.cpp
+        tests/SamplePianoTests.cpp
+        tests/VelocityCurveTests.cpp
         tests/MidiParserTests.cpp
         tests/MidiSessionTests.cpp
         tests/SettingsTests.cpp
