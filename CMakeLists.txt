@@ -11,6 +11,7 @@ option(VLL_BUILD_TESTS "Build Voice Leading Lab tests" ON)
 option(VLL_WARNINGS_AS_ERRORS "Treat compiler warnings as errors" OFF)
 
 add_library(vll_core
+    src/barry/BarryHarrisEngine.cpp
     src/analysis/DeterministicFeedback.cpp
     src/analysis/VoiceAssigner.cpp
     src/analysis/VoiceLeadingEvaluator.cpp
@@ -29,6 +30,7 @@ add_library(vll_core
     src/curriculum/FundamentalCourse.cpp
     src/exercise/DeterministicExerciseGenerator.cpp
     src/exercise/NearestVoicingSolver.cpp
+    src/ear/EarTrainingEngine.cpp
     src/harmony/MelodyHarmonizer.cpp
     src/lab/ReharmonizationLab.cpp
     src/midi/LinuxRawMidiInput.cpp
@@ -57,11 +59,13 @@ if(VLL_BUILD_TESTS)
     add_executable(vll_tests
         tests/TestMain.cpp
         tests/AppShellTests.cpp
+        tests/BarryHarrisTests.cpp
         tests/AudioSampleTests.cpp
         tests/BookCurriculumEngineTests.cpp
         tests/CurriculumCatalogTests.cpp
         tests/FeedbackTests.cpp
         tests/ExerciseGeneratorTests.cpp
+        tests/EarTrainingTests.cpp
         tests/FundamentalCourseTests.cpp
         tests/InstrumentWorkshopTests.cpp
         tests/MelodyHarmonizerTests.cpp

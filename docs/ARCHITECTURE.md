@@ -96,3 +96,10 @@ validated preset data independent of sample licensing. Melody harmonization and
 reharmonization labs both reuse the bounded nearest-voicing solver, so fixed
 lines and candidate rankings obey the same deterministic motion constraints as
 generated exercises.
+
+## ADR-015: Barry Harris families and ear prompts remain deterministic
+
+Sixth-diminished fields are pitch-class structures whose inversions, borrowing,
+and related-dominant interpretations are computed without chord-label guessing.
+Ear tasks store their exact source progression, target voice, seed, and answer,
+allowing replay and factual assessment without hidden randomness.
