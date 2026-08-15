@@ -35,6 +35,7 @@ add_library(vll_core
     src/harmony/MelodyHarmonizer.cpp
     src/lab/ReharmonizationLab.cpp
     src/practice/ProgressionPractice.cpp
+    src/release/ReleaseReadiness.cpp
     src/tutor/StructuredTutor.cpp
     src/midi/LinuxRawMidiInput.cpp
     src/midi/MidiByteStreamParser.cpp
@@ -74,6 +75,7 @@ if(VLL_BUILD_TESTS)
         tests/InstrumentWorkshopTests.cpp
         tests/MelodyHarmonizerTests.cpp
         tests/ReharmonizationLabTests.cpp
+        tests/ReleaseReadinessTests.cpp
         tests/SamplePianoTests.cpp
         tests/SonorityDetectorTests.cpp
         tests/VelocityCurveTests.cpp
@@ -93,3 +95,8 @@ endif()
 install(TARGETS voice-leading-lab RUNTIME DESTINATION bin)
 install(FILES Voice_Leading_and_Barry_Harris_PDFs.zip
         DESTINATION share/voice-leading-lab/books)
+install(DIRECTORY docs/ DESTINATION share/doc/voice-leading-lab)
+set(CPACK_PACKAGE_NAME "Voice Leading Lab")
+set(CPACK_PACKAGE_VERSION ${PROJECT_VERSION})
+set(CPACK_GENERATOR "TGZ")
+include(CPack)

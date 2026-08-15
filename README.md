@@ -4,7 +4,7 @@ Desktop-first piano training software centered on voice paths rather than chord 
 
 ## Current milestone
 
-Phases 0-12 are implemented. The project includes deterministic MIDI, audio, analysis, notation, feedback, curriculum, all-key exercises, canonical book integration, instrument-workshop presets, fixed-melody harmonization, and a reharmonization lab with independent voice locks. The study PDFs remain the canonical curriculum source.
+Phases 0-19 are implemented. Voice Leading Lab now includes the complete deterministic engine, book-aligned curriculum, instrument workshop, melody and reharmonization tools, Barry Harris modules, ear training, free-play analysis, progression practice, optional structured tutor boundary, accessibility settings, backup/import, packaging, and release validation. The study PDFs remain the canonical curriculum source.
 
 ## Build
 

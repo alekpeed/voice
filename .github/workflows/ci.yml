@@ -39,3 +39,5 @@ jobs:
         run: ./build/voice-leading-lab --phase-13-15-smoke
       - name: Analysis practice and tutor smoke test
         run: ./build/voice-leading-lab --phase-16-18-smoke
+      - name: Release smoke test
+        run: ./build/voice-leading-lab --release-smoke

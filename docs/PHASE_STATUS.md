@@ -292,3 +292,14 @@ boundary that exports only validated deterministic facts as escaped JSON.
 Exit evidence: session failures, habit counts, chorus dimensions, harmony
 membership, offline explanation, and structured payload safety pass strict
 tests, sanitizers, and the combined Phase 16-18 smoke command.
+
+## Phase 19: Polish and release
+
+Implemented: five-step device-to-lesson onboarding, independent high-contrast,
+reduced-motion, screen-reader, and interface-scale preferences; versioned,
+validated progress backup/import; documentation installation; TGZ packaging;
+and a release smoke gate in CI.
+
+Exit evidence: all subsystem tests, strict warnings, ASan/UBSan, every historical
+smoke command, backup corruption cases, accessibility bounds, and packaging
+configuration pass. Phases 0-19 are complete.

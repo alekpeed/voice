@@ -16,6 +16,7 @@
 #include "vll/lab/ReharmonizationLab.h"
 #include "vll/freeplay/SessionAnalyzer.h"
 #include "vll/practice/ProgressionPractice.h"
+#include "vll/release/ReleaseReadiness.h"
 #include "vll/tutor/StructuredTutor.h"
 #include "vll/midi/LinuxRawMidiInput.h"
 #include "vll/midi/MidiSession.h"
@@ -392,6 +393,14 @@ int main(const int argc, char** argv) {
         const vll::tutor::TutorPayload payload{"VL-02.2","VL-17-A",{{"step","E moved to F."}}};
         if (vll::tutor::StructuredTutor{}.jsonPayload(payload)=="{}") return 35;
         std::cout << "PHASE_16_18_SMOKE_OK\n";
+    }
+    if (command == "--release-smoke") {
+        const vll::release::Backup backup{1,{{"VL-05.2",3,8}},{true,true,true,1.25F}};
+        const auto restored=vll::release::ReleaseReadiness::importBackup(
+            vll::release::ReleaseReadiness::exportBackup(backup));
+        if (!restored.backup || restored.backup->progress.size()!=1 ||
+            vll::release::ReleaseReadiness::onboardingSteps().size()!=5) return 36;
+        std::cout << "RELEASE_SMOKE_OK\n";
     }
 
     if (smokeTest) std::cout << "SMOKE_TEST_OK\n";
