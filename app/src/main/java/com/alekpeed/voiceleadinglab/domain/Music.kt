@@ -74,7 +74,7 @@ class NearestVoicingSolver {
                 return
             }
             for (index in start until candidates.size) {
-                chosen += MidiPitch(candidates[index]); search(index + 1, chosen); chosen.removeLast()
+                chosen += MidiPitch(candidates[index]); search(index + 1, chosen); chosen.removeAt(chosen.lastIndex)
             }
         }
         search(0, mutableListOf())
