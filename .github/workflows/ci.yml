@@ -1,0 +1,29 @@
+name: CI
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  linux:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+      - name: Configure
+        run: cmake -S . -B build -G Ninja -DCMAKE_BUILD_TYPE=Release -DVLL_WARNINGS_AS_ERRORS=ON
+      - name: Build
+        run: cmake --build build
+      - name: Test
+        run: ctest --test-dir build --output-on-failure
+      - name: Smoke test
+        run: ./build/voice-leading-lab --smoke-test
+      - name: MIDI smoke test
+        run: ./build/voice-leading-lab --midi-smoke
+      - name: Audio smoke test
+        run: ./build/voice-leading-lab --audio-smoke
+      - name: Visualizer smoke test
+        run: ./build/voice-leading-lab --visualizer-smoke
+      - name: Notation smoke test
+        run: ./build/voice-leading-lab --notation-smoke
+      - name: Feedback smoke test
+        run: ./build/voice-leading-lab --feedback-smoke
